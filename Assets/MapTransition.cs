@@ -8,7 +8,7 @@ public class MapTransition : MonoBehaviour
     [SerializeField] PolygonCollider2D mapBoundry;
     CinemachineConfiner2D confiner;
     [SerializeField] Direction direction;
-    // [SerializeField] float additivePos = 2f;
+    [SerializeField] float additivePos = 2f;
 
     enum Direction { Up, Down, Left, Right };
 
@@ -23,5 +23,24 @@ public class MapTransition : MonoBehaviour
         }
     }
 
-    private void 
+    private void UpdatePlayerPosition(GameObject player){
+        Vector3 newPos = player.transform.position;
+
+        switch(direction){
+            case Direction.Up:
+                newPos.y += additivePos;
+                break;
+            case Direction.Down:
+                newPos.y -= additivePos;
+                break;
+            case Direction.Left:
+                newPos.x += additivePos;
+                break;
+            case Direction.Right:
+                newPos.x -= additivePos;
+                break;
+        }
+
+        player.transform.position = newPos;
+    }
 }
