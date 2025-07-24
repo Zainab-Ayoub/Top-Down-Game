@@ -17,7 +17,9 @@ public class SaveController : MonoBehaviour
     {
         SaveData saveData = new SaveData{
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
-            mapBoundary = FindGameObjectOfType<CinemachineConfiner>().m_BoundingShape2D.gameObject.name;
-        }
+            mapBoundary = FindGameObjectOfType<CinemachineConfiner>().m_BoundingShape2D.gameObject.name
+        };
+
+        File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
     }
 }
