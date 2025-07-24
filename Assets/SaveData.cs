@@ -1,6 +1,10 @@
- using UnityEngine;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class NewEmptyCSharpScript
-{
-    
+[System.Serializable]
+
+public class SaveData{
+    public vector3 playerPosition;
+    public string mapBoundary;
 }
