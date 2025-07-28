@@ -20,10 +20,12 @@ public class SaveController : MonoBehaviour
         SaveData saveData = new SaveData
         {
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
-            mapBoundary = FindFirstObjectByType<CinemachineConfiner>().m_BoundingShape2D.gameObject.name
+            mapBoundary = FindFirstObjectByType<CinemachineConfiner2D>().m_BoundingShape2D.gameObject.name
         };
 
         File.WriteAllText(saveLocation, JsonUtility.ToJson(saveData));
+        Debug.Log("Save path: " + saveLocation);
+
     }
 
 
@@ -33,7 +35,7 @@ public class SaveController : MonoBehaviour
 
             GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
 
-            FindFirstObjectByType<CinemachineConfiner>().m_BoundingShape2D = GameObject.Find(saveData.mapBoundary).GetComponent<PolygonCollider2D>();
+            FindFirstObjectByType<CinemachineConfiner2D>().m_BoundingShape2D = GameObject.Find(saveData.mapBoundary).GetComponent<PolygonCollider2D>();
         } else{
             SaveGame();
         }
