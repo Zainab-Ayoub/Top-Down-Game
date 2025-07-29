@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.EventSystem;
+using UnityEngine.EventSystems;
 
 public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -11,7 +11,7 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     }
 
     public void OnBeginDrag(PointerEventData eventData){
-        originalParent = transform.parent // save og parent
+        originalParent = transform.parent; // save og parent
         transform.SetParent(transform.root); // above other canvas'
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0.6f; // semi-transparent during drag
