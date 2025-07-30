@@ -22385,9 +22385,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757757443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5047ddfe92f4526f89fedec3ba166aec, type: 3}
+  m_Script: {fileID: 11500000, guid: 600bb3ea07e4a24d5a18eb5f36bf63bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPrefabs:
+  - {fileID: -4860844661450212488, guid: 196d809c7536ab144bf402eea5ba6514, type: 3}
+  - {fileID: 8654053423172584095, guid: caf9a2be8c70db489ad4f5a0ebd2625c, type: 3}
 --- !u!1 &1772461274
 GameObject:
   m_ObjectHideFlags: 0
