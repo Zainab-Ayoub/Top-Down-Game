@@ -11,7 +11,7 @@ public class ItemDictionary : MonoBehaviour
         itemDictionary = new Dictionary<int, GameObject>();
 
         // auto increment ids
-        for(int i=0; i < itemPrefabs; i++)
+        for(int i=0; i < itemPrefabs.Count; i++)
         {
             if(itemPrefabs[i] != null)
             {
@@ -27,7 +27,7 @@ public class ItemDictionary : MonoBehaviour
 
     public GameObject GetItemPrefab(int itemID)
     {
-        itemDictionary.TryGetValue(itemID, out GameObject prefab)
+        itemDictionary.TryGetValue(itemID, out GameObject prefab);
         if(prefab == null)
         {
             Debug.LogWarning($"Item with ID {itemID} not found in dictionary.");
