@@ -1,16 +1,8 @@
 using UnityEngine;
 
-public class InventorySaveData : MonoBehaviour
+[System.Serializable]
+public class InventorySaveData 
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int itemID;
+    public int slotIndex; // the index of the slot where the item is placed within our inventory
 }
