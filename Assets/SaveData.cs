@@ -6,5 +6,6 @@ using System.Collections.Generic;
 
 public class SaveData{
     public Vector3 playerPosition;
-    public string mapBoundary;
+    public string mapBoundary; // the boundary name for the map
+    public InventorySaveData inventorySaveData;
 }
