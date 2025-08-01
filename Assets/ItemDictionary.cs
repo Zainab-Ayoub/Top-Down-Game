@@ -8,6 +8,7 @@ public class ItemDictionary : MonoBehaviour
  
     public void Awake()
     {
+        itemDictionary = new Dictionary<int, GameObject>();
         // auto increment ids
         for(int i=0; i < itemPrefabs.Count; i++)
         {
