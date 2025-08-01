@@ -52,7 +52,18 @@ public class InventoryController : MonoBehaviour
         // populate slots with saved items
         foreach(InventorySaveData data in inventorySaveData)
         {
-            
+            if(data.slotIndex < slotCount)
+            {
+                Slot slot = inventoryPanel.transform.GetChild(data.slotIndex).GetComponent<Slot>();
+                GameObject itemPrefab = itemDictionary.GetItemPrefab(data.itemID);
+
+                if(itemPrefab != null)
+                {
+                    GameObject item = Instantiate(itemPrefab, slot.transform);
+                    item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                    slot.currentItem = item;
+                }
+            }        
         }
     }
 }
