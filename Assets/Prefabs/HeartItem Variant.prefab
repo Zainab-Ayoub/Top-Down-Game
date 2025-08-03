@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4860844661450212488, guid: 196d809c7536ab144bf402eea5ba6514, type: 3}
+      propertyPath: Name
+      value: Heart
+      objectReference: {fileID: 0}
     - target: {fileID: -3333611438396630690, guid: 196d809c7536ab144bf402eea5ba6514, type: 3}
       propertyPath: m_Sprite
       value: 

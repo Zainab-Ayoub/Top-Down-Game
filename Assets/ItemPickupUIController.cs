@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;   
+using System.Collections;
 
 public class ItemPickupUIController : MonoBehaviour
 {
@@ -9,9 +10,9 @@ public class ItemPickupUIController : MonoBehaviour
 
     public GameObject popupPrefab;
     public int maxPopups = 5;
-    public float popupDuration;
+    public float popupDuration = 3f;
 
-    private readonly Queue<GameObject> activePopup = new();
+    private readonly Queue<GameObject> activePopups = new();
 
     public void Awake()
     {
@@ -26,10 +27,10 @@ public class ItemPickupUIController : MonoBehaviour
         }
     }
 
-    public void ShowItemPickup(string itemName, itemIcon)
+    public void ShowItemPickup(string itemName, Sprite itemIcon)
     {
         GameObject newPopup = Instantiate(popupPrefab, transform);
-        newPopup.GetComponentInChildren<TMP_Text().text = itemName;
+        newPopup.GetComponentInChildren<TMP_Text>().text = itemName;
 
         Image itemImage = newPopup.transform.Find("ItemIcon").GetComponent<Image>();
 
@@ -38,5 +39,35 @@ public class ItemPickupUIController : MonoBehaviour
             itemImage.sprite = itemIcon;
         }
         activePopups.Enqueue(newPopup);
+        if(activePopups.Count > maxPopups)
+        {
+            Destroy(activePopups.Dequeue());
+        }
+        // fade out & destroy
+        StartCoroutine(FadeOutAndDestroy(newPopup));
     }
+
+    private IEnumerator FadeOutAndDestroy(GameObject popup)
+    {
+        yield return new WaitForSeconds(popupDuration);
+
+        if (popup == null) yield break;
+
+        CanvasGroup canvasGroup = popup.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = popup.AddComponent<CanvasGroup>();
+        }
+
+        for (float timePassed = 0f; timePassed < 1f; timePassed += Time.deltaTime)
+        {
+            if (popup == null) yield break;
+
+            canvasGroup.alpha = 1f - timePassed;
+            yield return null;
+        }
+
+        Destroy(popup);
+    }
+
 }
