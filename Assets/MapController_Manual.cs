@@ -26,6 +26,26 @@ public class MapController_Manual : MonoBehaviour
             Instance = this;
         }
 
-        mapImages = mapParent.GetComponentInChildren<Image>().ToList();
+        mapImages = mapParent.GetComponentsInChildren<Image>().ToList();
+    }
+
+    public void HighlightArea(string areaName)
+    {
+        foreach(Image area in mapImages)
+        {
+            area.color = dimedColour;
+        }
+
+        Image currentArea = mapImages.Find(x => x.name == areaName);
+
+        if(currentArea != null)
+        {
+            currentArea.color = highlightColour;
+            playerIconTransform.position = currentArea.GetComponent<RectTransform>().position;
+        }
+        else
+        {
+            Debug.LogWarning("Area not found " + areaName);
+        }
     }
 }

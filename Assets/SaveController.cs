@@ -40,7 +40,7 @@ public class SaveController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
 
             FindFirstObjectByType<CinemachineConfiner2D>().m_BoundingShape2D = GameObject.Find(saveData.mapBoundary).GetComponent<PolygonCollider2D>();
-
+            MapController_Manual.Instance?.HighlightArea(saveData.mapBoundary);
             inventoryController.SetInventoryItems(saveData.inventorySaveData);
         } else{
             SaveGame();

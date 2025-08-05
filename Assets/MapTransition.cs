@@ -20,6 +20,8 @@ public class MapTransition : MonoBehaviour
         if(collision.gameObject.CompareTag("Player")){
             confiner.m_BoundingShape2D = mapBoundry;
             UpdatePlayerPosition(collision.gameObject);
+
+            MapController_Manual.Instance?.HighlightArea(mapBoundry.name);
         }
     }
 
