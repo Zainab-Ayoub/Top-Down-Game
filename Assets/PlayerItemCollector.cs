@@ -12,17 +12,29 @@ public class PlayerItemCollector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Item"))
+        if (collision.CompareTag("Item"))
         {
             Item item = collision.GetComponent<Item>();
             if(item != null)
             {
-                // add item inventory
+                // Try to add item to inventory
                 bool itemAdded = inventoryController.AddItem(collision.gameObject);
 
                 if(itemAdded)
                 {
                     item.PickUp();
+
+                    // Heal instantly if it's a potion
+                    if(item.Name.ToLower().Contains("potion"))
+                    {
+                        PlayerHealthBar playerHealth = GetComponent<PlayerHealthBar>();
+                        if(playerHealth != null)
+                        {
+                            playerHealth.Heal(2); // change 2 to desired heal amount
+                        }
+                    }
+
+                    // Remove item from scene after pickup
                     Destroy(collision.gameObject);
                 }
             }
