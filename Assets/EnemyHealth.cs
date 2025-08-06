@@ -2,13 +2,18 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health = 3;
+    public int maxHealth = 3; // 3 hits to kill
+    public int currentHealth;
 
-    public void TakeDamage(int damage)
+    void Start()
     {
-        health -= damage;
-        Debug.Log("Enemy took damage: " + damage);
-        if (health <= 0)
+        currentHealth = maxHealth;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -16,7 +21,19 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Enemy died!");
+        // Destroy the enemy
         Destroy(gameObject);
+        CheckWinCondition();
+    }
+
+    void CheckWinCondition()
+    {
+        // Check if all enemies are defeated
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length == 0)
+        {
+            Debug.Log("All enemies defeated! You Win!");
+            // Add win UI or scene transition here (see Step 5)
+        }
     }
 }

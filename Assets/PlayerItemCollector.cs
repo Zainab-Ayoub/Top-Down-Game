@@ -25,14 +25,14 @@ public class PlayerItemCollector : MonoBehaviour
                     item.PickUp();
 
                     // Heal instantly if it's a potion
-                    if(item.Name.ToLower().Contains("potion"))
-                    {
-                        PlayerHealthBar playerHealth = GetComponent<PlayerHealthBar>();
-                        if(playerHealth != null)
-                        {
-                            playerHealth.Heal(2); // change 2 to desired heal amount
-                        }
-                    }
+                    // if(item.Name.ToLower().Contains("potion"))
+                    // {
+                    //     PlayerHealthBar playerHealth = GetComponent<PlayerHealthBar>();
+                    //     if(playerHealth != null)
+                    //     {
+                    //         playerHealth.Heal(2); // change 2 to desired heal amount
+                    //     }
+                    // }
 
                     // Remove item from scene after pickup
                     Destroy(collision.gameObject);
