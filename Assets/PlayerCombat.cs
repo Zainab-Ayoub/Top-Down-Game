@@ -25,10 +25,14 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        // Play particle effect
         if (attackParticle != null)
         {
             attackParticle.Play();
+            Debug.Log("Particle effect triggered!");
+        }
+        else
+        {
+            Debug.LogError("AttackParticle is not assigned!");
         }
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
